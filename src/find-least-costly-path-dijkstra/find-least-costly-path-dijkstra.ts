@@ -129,6 +129,9 @@ function getCompleteTraversalCostTree(nodeStates: NodeStates) {
   return completeTraversalCostTree;
 }
 
+/**
+ * Find the shortest path / least costly path in a weighted graph using Dijkstra's algorithm starting at a source / origin node to a destination node. Weights in the graph (referred as traversal costs in this function) must be positive numbers.
+ **/
 export function findLeastCostlyPathDijkstra(
   graph: WeightedAdjacencyList,
   origin: NodeId,
@@ -162,6 +165,13 @@ export function findLeastCostlyPathDijkstra(
 
       const traversalCostFromCurrentNodeToNeighbor = neighbor.edgeWeight;
       const neighborNodeId = neighbor.nodeId;
+
+      // Check to ensure that edge weight is not negative since Dijkstra's algorithm requires all edge weights to be positive
+      if (traversalCostFromCurrentNodeToNeighbor < 0) {
+        throw new Error(
+          `Edge weights cannot be negative, node ${neighborNodeId} has an edge weight of ${traversalCostFromCurrentNodeToNeighbor}`
+        );
+      }
 
       const neighborNodeState = nodeStates.get(neighborNodeId);
 

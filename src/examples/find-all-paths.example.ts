@@ -2,8 +2,8 @@ import {
   findAllPathsBfs,
   findAllPathsDfsIterative,
   findAllPathsDfsRecursive,
-} from "..";
-import { AdjacencyList, GraphNode } from "./types";
+} from "../find-all-paths";
+import { AdjacencyList, GraphNode } from "../find-all-paths/types";
 
 const graph1: AdjacencyList = {
   0: [1, 2],
